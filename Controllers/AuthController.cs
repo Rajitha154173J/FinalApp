@@ -1,5 +1,9 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FinalApp.Data;
+using FinalApp.Models;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Oauth2.v2;
 using Microsoft.AspNetCore.Authorization;
@@ -9,10 +13,10 @@ namespace FinalApp.Controllers
 { 
     [Route("api/[Controller]")]
     public class AuthController : Controller
-    {
-        public AuthController ()
+    {   private readonly Datacontext _context;
+        public AuthController (Datacontext context)
         {
-            
+            _context = context;
         }
 
         [HttpGet]
@@ -30,7 +34,7 @@ namespace FinalApp.Controllers
 
             return Ok(
                 new {
-                    acess_token = credential.Token.AccessToken,
+                    access_token = credential.Token.AccessToken,
                     id_token = credential.Token.IdToken,
                     expire_token = credential.Token.ExpiresInSeconds
                 }
@@ -38,9 +42,25 @@ namespace FinalApp.Controllers
         }
 
         [HttpGet("[action]")]
-        [Authorize]
-        public IActionResult UserDetail(){
-            return Ok ("user get daetail");
+        // [Authorize]
+        public ActionResult<List<User>> UserDetail(){
+
+            return _context.Users.ToList();
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody]User data){
+            if (data == null)
+            {
+                throw new System.ArgumentNullException(nameof(data));
+            }
+
+            _context.Users.Add(data);
+            _context.SaveChanges();
+
+            return Ok(
+                new{ success="true"}
+                );
         }
     }
 }

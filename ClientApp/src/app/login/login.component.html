@@ -1,3 +1,42 @@
-<p>
+<!-- <p>
     <button type="button" class="btn btn-success" (click)="login()">Login with Google</button>
-</p>
+
+    <button type="button"  class="btn btn-block btn-social btn-google" (click)="login()">
+        <i class="fa fa-google-plus pr-1"></i> Sign in with Google
+      </button>
+</p> -->
+
+<body>
+    <div class="login-form">
+        <form action="/examples/actions/confirmation.php" method="post">
+            <h2 class="text-center">Sign in</h2>		
+            <div class="text-center social-btn">
+                <!--
+                <a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a> -->
+                <button (click)="loginGoogle()" class="btn btn-danger btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></button>
+                   
+            </div>
+            <div class="or-seperator"><i>or</i></div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                </div>
+            </div>        
+            <div class="form-group">
+                <button (click)="login()" class="btn btn-success btn-block login-btn">Sign in</button>
+            </div>
+            <div class="clearfix">
+                <a routerLink="/register">Register now</a>
+                <a href="#" class="pull-right text-success">Forgot Password?</a>
+            </div>  
+            
+        </form>
+    </div>
+</body>    

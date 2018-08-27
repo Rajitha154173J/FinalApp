@@ -9,7 +9,8 @@ export class NavMenuComponent {
   isExpanded = false;
 
   collapse() {
-    this.isExpanded = false;
+    // this.isExpanded = false;
+    console.log("sds");
   }
 
   toggle() {
