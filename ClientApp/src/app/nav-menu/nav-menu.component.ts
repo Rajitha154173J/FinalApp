@@ -9,11 +9,16 @@ export class NavMenuComponent {
   isExpanded = false;
 
   collapse() {
-    // this.isExpanded = false;
-    console.log("sds");
+    this.isExpanded = false;
+    // console.log("sds");
   }
 
   toggle() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  logout(){
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("Id_token");
   }
 }

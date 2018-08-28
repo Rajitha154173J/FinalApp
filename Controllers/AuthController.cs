@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Oauth2.v2;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinalApp.Controllers
 { 
@@ -48,13 +50,33 @@ namespace FinalApp.Controllers
             return _context.Users.ToList();
         }
 
+        [HttpPost("login")]
+        public IActionResult login([FromBody]UserLogin data){
+            
+            var user = _context.Users.SingleOrDefault(x => x.UserName == data.UserName);
+            
+             if(user==null )
+            {
+                return Ok(
+                    new{ success="false"}
+                    );
+            }
+            return Ok(
+                new{ success="true"}
+                );
+
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody]User data){
-            if (data == null)
-            {
-                throw new System.ArgumentNullException(nameof(data));
-            }
+          var user= _context.Users.SingleOrDefault(x => x.UserName== data.UserName);
+          if (user!=null){
+            
+             return Ok(
+             new{ success="This Username Already used"}
+                );
 
+          }
             _context.Users.Add(data);
             _context.SaveChanges();
 

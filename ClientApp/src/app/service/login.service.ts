@@ -13,8 +13,10 @@ export class LoginService {
    return this.http.get("http://localhost:5000/api/Auth")
     .map((response: any)=>response);
    
-    
-
+  }
+  getLog(data){
+    return this.http.post("http://localhost:5000/api/Auth/login",data)
+    .map((res : any)=>res)
   }
 
 }
