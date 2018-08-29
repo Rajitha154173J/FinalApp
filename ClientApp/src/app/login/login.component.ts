@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginLocal(){
-    this.loginService.getLog(this.newlogin).subscribe(res=>{console.log(res);
+    this.loginService.getLog(this.newlogin).subscribe(res=>{
      if(res['success']=="true") 
      {
          this.router.navigateByUrl('/home');
