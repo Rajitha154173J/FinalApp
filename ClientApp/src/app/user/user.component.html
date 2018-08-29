@@ -1,6 +1,6 @@
 <h2>Users</h2>
 <ul class="users">
-  <li *ngFor="let use of user">
-    <span class="badge">{{use.id}}</span> {{use.firstName}} {{use.lastName}}
+  <li *ngFor="let use of user ; index as i">
+    <span class="badge">{{i+1}}</span> {{use.firstName}} {{use.lastName}}
   </li>
 </ul>
