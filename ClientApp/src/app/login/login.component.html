@@ -8,7 +8,7 @@
 
 <body>
     <div class="login-form">
-        <form action="/examples/actions/confirmation.php" #login="ngForm">
+        <form  #login="ngForm">
             <h2 class="text-center">Sign in</h2>		
             <div class="text-center social-btn">
                 <!--
@@ -20,17 +20,17 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+                    <input type="text" class="form-control" name="UserName" placeholder="Username" required="required" [(ngModel)]="newlogin.UserName">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                    <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                    <input type="password" class="form-control" name="Password" placeholder="Password" required="required" [(ngModel)]="newlogin.Password">
                 </div>
             </div>        
             <div class="form-group">
-                <button (click)="login()" class="btn btn-success btn-block login-btn">Sign in</button>
+                <button (click)="loginLocal()" class="btn btn-success btn-block login-btn">Sign in</button>
             </div>
             <div class="clearfix">
                 <a routerLink="/register">Register now</a>

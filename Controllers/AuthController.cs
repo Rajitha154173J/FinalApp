@@ -54,8 +54,12 @@ namespace FinalApp.Controllers
         public IActionResult login([FromBody]UserLogin data){
             
             var user = _context.Users.SingleOrDefault(x => x.UserName == data.UserName);
-            
-             if(user==null )
+
+            var logPass = _context.Users.Single(b => b.UserName == data.UserName);
+                        
+                        
+                                    
+             if(user==null || logPass.Password != data.Password)
             {
                 return Ok(
                     new{ success="false"}

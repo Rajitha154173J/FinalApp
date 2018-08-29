@@ -16,8 +16,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-    this.loginService.getLog(this.newlogin).subscribe(res=>console.log(res))
+  loginLocal(){
+    this.loginService.getLog(this.newlogin).subscribe(res=>{console.log(res);
+     if(res['success']=="true") 
+     {
+         this.router.navigateByUrl('/home');
+      }
+    });
+   
   }
 
   loginGoogle(){
